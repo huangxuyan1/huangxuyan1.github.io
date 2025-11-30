@@ -1,0 +1,28 @@
+
+title: "Huang Xuyan"
+description: "OSU CSE Undergraduate Student | AI Researcher | MIDI/Audio/LLM"
+url: "https://www.xuyanhuang.com"
+
+# Remove default header by setting an empty title in the layout
+header_pages: []
+
+# Use the GitHub Pages-supported theme
+theme: minima
+
+# Optional: enable pretty URLs like /about/ instead of /about.html
+permalink: pretty
+
+# Social links (visible in footer)
+author:
+  name: "Huang Xuyan"
+  email: ""
+  github: huangxuyan1
+  linkedin: ""
+
+# Plugins supported by GitHub Pages
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Sitemap for better indexing
+markdown: kramdown
