@@ -1,0 +1,719 @@
+.tl {
+  --paper: #ffffff;
+  --tint: #f5f5f7;
+  --ink: #1d1d1f;
+  --muted: #333333;
+  --rule: #e0e0e0;
+  --link: #2f52a2;
+  --focus: #2f52a2;
+  --highlight: rgba(47, 82, 162, 0.12);
+  --edge: #3c3c3c;
+  --sans: 'Schibsted Grotesk', Arial, sans-serif;
+  --mono: 'Geist Mono', Consolas, monospace;
+  --head: 92px;
+  min-height: 100vh;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+/* Each kind of work has one color, shared by its timeline track and its section heading.
+   All of them come from the fourth row of Ableton Live's clip palette, in palette order;
+   the timeline band uses the gray from the third row. */
+.tl-c-education {
+  --c: #bfba69;
+}
+
+.tl-c-research {
+  --c: #7db04d;
+}
+
+.tl-c-experience {
+  --c: #8393cc;
+}
+
+.tl-c-projects {
+  --c: #a595b5;
+}
+
+.tl-c-milestones {
+  --c: #bc7196;
+}
+
+.tl a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.tl a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.tl a:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.tl .photo-placeholder {
+  font-family: inherit;
+  color: var(--muted);
+  background: var(--tint);
+  border-color: #d2d2d7;
+}
+
+.tl-pub .photo-placeholder {
+  background: var(--paper);
+}
+
+.tl .photo-placeholder small {
+  color: var(--muted);
+}
+
+.tl-page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ── TOP STRIP ── */
+.tl-strip {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+.tl-strip-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.1rem 1.5rem;
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+}
+
+.tl a.tl-strip-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.tl-strip nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 1.1rem;
+  font-size: 0.8125rem;
+}
+
+.tl-strip nav a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.tl-strip nav a:hover {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+/* ── MASTHEAD ── */
+.tl-masthead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 3rem;
+  align-items: start;
+  padding: 2.75rem 0 2.25rem;
+  scroll-margin-top: 60px;
+}
+
+.tl-masthead h1 {
+  font-size: clamp(2.75rem, 6.5vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.tl-role {
+  margin-top: 0.6rem;
+  font-size: 1.3125rem;
+  line-height: 1.3;
+  color: var(--muted);
+}
+
+.tl-bio {
+  margin-top: 1.25rem;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+.tl-bio p + p {
+  margin-top: 0.75rem;
+}
+
+.tl-interests {
+  margin-top: 1rem;
+}
+
+.tl-interests strong {
+  font-weight: 600;
+}
+
+.tl-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  margin-top: 1.1rem;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.tl-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tl-portrait {
+  margin-top: 0.35rem;
+}
+
+/* ── CAREER FIGURE ── */
+/* A gray band across the page. Redefining the colors here restyles everything inside it,
+   including the label backgrounds that hide the lines behind them. */
+.tl-band {
+  --paper: #a9a9a9;
+  --ink: #000000;
+  --muted: #000000;
+  --rule: #7b7b7b;
+  --focus: #000000;
+  --edge: #3c3c3c;
+  padding: 1.25rem 0 1.1rem;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.tl-chart-scroll {
+  overflow-x: auto;
+}
+
+.tl-chart {
+  position: relative;
+  min-width: 860px;
+}
+
+.tl-track {
+  position: relative;
+  display: flex;
+  border-top: 1px solid var(--rule);
+}
+
+.tl-track.tl-ruler {
+  height: 30px;
+  border-top: 0;
+}
+
+.tl-track-head {
+  position: sticky;
+  right: 0;
+  z-index: 5;
+  flex: none;
+  order: 1;
+  width: var(--head);
+  margin-top: -1px;
+  padding: 0.15rem 0.5rem 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  background: var(--c, var(--paper));
+  border: 2px solid #505050;
+  border-bottom: 0;
+}
+
+/* Each block's top line covers its track's divider, so neighbors share one line.
+   Only the last block needs a line along its bottom. */
+.tl-c-milestones .tl-track-head {
+  border-bottom: 2px solid #505050;
+}
+
+.tl-ruler .tl-track-head {
+  margin-top: 0;
+  border: 0;
+}
+
+.tl-ruler-scale {
+  position: relative;
+  flex: 1;
+}
+
+.tl-ruler-scale b {
+  position: absolute;
+  top: 7px;
+  padding-left: 5px;
+  font-family: var(--mono);
+  font-size: 0.71875rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.tl-ruler-scale i {
+  position: absolute;
+  bottom: 0;
+  width: 1px;
+  height: 5px;
+  background: var(--rule);
+}
+
+/* Vertical year lines, behind the clips. */
+.tl-grid {
+  position: absolute;
+  top: 0;
+  right: var(--head);
+  bottom: 0;
+  left: 0;
+}
+
+.tl-grid span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule);
+}
+
+.tl-lanes {
+  position: relative;
+  flex: 1;
+}
+
+.tl-lane {
+  position: relative;
+  height: 38px;
+}
+
+.tl-lane--markers {
+  height: 30px;
+}
+
+.tl a.tl-clip {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* Labels sit above the year lines and the "now" line so those never cross the text. */
+.tl-clip-label {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  z-index: 3;
+  padding-right: 3px;
+  background: var(--paper);
+  font-size: 0.71875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.tl-clip-label.is-before {
+  right: 0;
+  left: auto;
+}
+
+.tl-clip-bar {
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  left: 0;
+  height: 12px;
+  background: var(--c);
+  box-shadow: inset 0 0 0 1px var(--edge);
+}
+
+/* Time still ahead is left hollow, like an expected graduation. */
+.tl-clip-bar.has-future {
+  background: linear-gradient(90deg, var(--c) var(--elapsed), transparent var(--elapsed));
+}
+
+.tl-chart:has(.tl-clip:hover, .tl-marker:hover) .tl-clip:not(:hover),
+.tl-chart:has(.tl-clip:hover, .tl-marker:hover) .tl-marker:not(:hover) {
+  opacity: 0.35;
+}
+
+.tl a.tl-marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  z-index: 3;
+  padding: 0 3px;
+  color: var(--ink);
+  text-decoration: none;
+  transform: translateX(-8px);
+}
+
+.tl-marker i {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  background: var(--c);
+  border: 1px solid var(--edge);
+  transform: rotate(45deg);
+}
+
+.tl-marker span {
+  position: relative;
+  z-index: 3;
+  padding: 0 3px;
+  background: var(--paper);
+  font-size: 0.71875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* "Now" line, on top of everything but ignoring the pointer. */
+.tl-playhead {
+  position: absolute;
+  top: 0;
+  right: var(--head);
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tl-playhead::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  bottom: 0;
+  left: var(--now);
+  width: 1px;
+  background: var(--ink);
+}
+
+.tl-playhead span {
+  position: absolute;
+  top: 5px;
+  left: var(--now);
+  padding: 0 0.3rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  color: var(--paper);
+  background: var(--ink);
+  transform: translateX(-50%);
+}
+
+.tl-figure figcaption {
+  min-height: 1.5em;
+  margin-top: 0.65rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.tl-figure figcaption strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.tl-figure-number {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.tl-swipe-hint {
+  display: none;
+}
+
+@media (max-width: 925px) {
+  .tl-swipe-hint {
+    display: inline;
+  }
+}
+
+/* ── SECTIONS ── */
+.tl-section {
+  margin-top: 2.75rem;
+  scroll-margin-top: 60px;
+}
+
+.tl-h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+/* Section rule with ticks, echoing the figure's time ruler. */
+.tl-h2::after {
+  content: '';
+  flex: 1;
+  align-self: flex-end;
+  height: 6px;
+  margin-bottom: 0.45rem;
+  background:
+    linear-gradient(var(--rule), var(--rule)) bottom / 100% 1px no-repeat,
+    repeating-linear-gradient(90deg, var(--rule) 0 1px, transparent 1px 14px) bottom / 100% 5px no-repeat;
+}
+
+.tl-chip {
+  flex: none;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--c);
+  box-shadow: inset 0 0 0 1px var(--edge);
+}
+
+.tl-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 3.5rem;
+  background: linear-gradient(var(--rule), var(--rule)) center 2.9rem / 1px calc(100% - 2.9rem) no-repeat;
+}
+
+/* ── ENTRIES ── */
+.tl-entry {
+  padding: 0.65rem 0;
+  scroll-margin-top: 64px;
+}
+
+.tl-entry:target {
+  background: var(--highlight);
+  box-shadow: 0 0 0 0.5rem var(--highlight);
+}
+
+.tl-entry-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 0.9rem;
+}
+
+.tl h3 {
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.tl-date {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.tl-subtitle {
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.tl-entry ul {
+  margin-top: 0.3rem;
+  padding-left: 1.05em;
+}
+
+.tl-entry li + li {
+  margin-top: 0.2rem;
+}
+
+.tl-entry li::marker {
+  color: var(--muted);
+}
+
+/* ── PUBLICATIONS ── */
+.tl-pub {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 1.75rem;
+  padding: 1.25rem;
+  margin-top: 0.75rem;
+  background: var(--tint);
+  scroll-margin-top: 64px;
+}
+
+.tl-pub:target {
+  background: var(--highlight);
+}
+
+.tl-pub-figure figcaption {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.tl-badge {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  padding: 0.1rem 0.45rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: #ffffff;
+  background: var(--link);
+}
+
+.tl-pub h3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.tl-pub h3 a {
+  color: var(--ink);
+  text-decoration-color: var(--rule);
+}
+
+.tl-pub-authors {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.tl-pub-authors strong {
+  font-weight: 600;
+}
+
+.tl-pub-summary {
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+.tl-buttons {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.tl a.tl-button {
+  padding: 0.1rem 0.7rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--link);
+  text-decoration: none;
+  border: 1px solid var(--link);
+}
+
+.tl a.tl-button:hover {
+  color: #ffffff;
+  background: var(--link);
+}
+
+/* ── PROJECTS ── */
+.tl-projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 3.5rem;
+}
+
+.tl-project {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+}
+
+.tl-project-figure {
+  flex: none;
+  width: 120px;
+  margin-top: 0.75rem;
+}
+
+.tl-project .tl-entry {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── ROWS: NEWS, HONORS ── */
+.tl-rows {
+  padding-top: 0.45rem;
+  list-style: none;
+}
+
+.tl-rows li {
+  display: grid;
+  grid-template-columns: 4.75rem minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 0.22rem 0;
+}
+
+.tl-rows .tl-date {
+  padding-top: 0.15em;
+}
+
+/* ── FOOTER ── */
+.tl-footer {
+  padding: 1rem 0 2rem;
+  margin-top: 3rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+}
+
+/* ── NARROW SCREENS ── */
+@media (max-width: 760px) {
+  .tl-page {
+    padding: 0 1.15rem;
+  }
+
+  .tl-strip {
+    position: static;
+  }
+
+  .tl-masthead {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+    padding-top: 1.75rem;
+  }
+
+  .tl-portrait {
+    order: -1;
+    width: 150px;
+    margin-top: 0;
+  }
+
+  .tl-role {
+    font-size: 1.2rem;
+  }
+
+  .tl-columns {
+    display: block;
+    background: none;
+  }
+
+  .tl-pub {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .tl-pub h3 {
+    font-size: 1.3rem;
+  }
+
+  .tl-projects {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tl-project {
+    gap: 0.85rem;
+  }
+
+  .tl-project-figure {
+    width: 84px;
+  }
+}
